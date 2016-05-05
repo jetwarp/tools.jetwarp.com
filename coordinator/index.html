@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" touch-action="none">
+  <head>
+    <title>Equirectangular Panorama Polar Coordinate Finder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <style>
+      .flex {
+        display: flex;
+      }
+      body {
+        flex-flow: column;
+      }
+      .major {
+        flex: 1;
+      }
+      img {
+        width: 100vw;
+        height: 50vw;
+      }
+    </style>
+  </head>
+  <body class="flex">
+    <div class="flex">
+      <div>
+        <output id="lat"></output>,
+        <output id="lon"></output>
+      </div>
+      <input id="panosrc" class="major"></input>
+    </div>
+    <div class="flex major"><img crossorigin id="pano"></div>
+    <script>
+      var panosrc = document.getElementById('panosrc');
+      var pano = document.getElementById('pano');
+      var outLat = document.getElementById('lat');
+      var outLon = document.getElementById('lon');
+      panosrc.addEventListener('input', function(evt) {
+        pano.src = panosrc.value;
+      });
+      function reportCoords(evt) {
+        if (evt.buttons) {
+          outLon.textContent =
+            (evt.offsetX / pano.width * 360).toFixed();
+          outLat.textContent =
+            -(180 - evt.offsetY / pano.height * 360).toFixed();
+          evt.preventDefault();
+        }
+      }
+      pano.addEventListener('mousemove', reportCoords);
+      pano.addEventListener('mousedown', reportCoords);
+    </script>
+  </body>
+</html>
