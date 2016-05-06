@@ -46,7 +46,7 @@
           outLon.textContent =
             (evt.offsetX / pano.width * 360).toFixed();
           outLat.textContent =
-            (180 - evt.offsetY / pano.height * 360).toFixed();
+            (90 - evt.offsetY / pano.height * 180).toFixed();
           evt.preventDefault();
         }
       }
