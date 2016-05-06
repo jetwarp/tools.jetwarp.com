@@ -4,4 +4,4 @@ Tools for making JetWarp experiences.
 
 ## coordinator
 
-Reports polar coordinates for a given panorama.
+Reports polar coordinates for points in a given panorama.
